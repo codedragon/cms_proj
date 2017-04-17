@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from cmsblog.models import Post
+from cmsblog.models import Category
 
 class PostTestCase(TestCase):
     fixtures = ['cmsblog_test_fixture.json', ]
@@ -12,4 +13,12 @@ class PostTestCase(TestCase):
         expected = "This is a title"
         p1 = Post(title = expected)
         actual = str(p1)
+        self.assertEqual(expected, actual)
+
+class CategoryTestCase(TestCase):
+
+    def test_string_representation(self):
+        expected = "A Category"
+        cl = Category(name=expected)
+        actual = str(cl)
         self.assertEqual(expected, actual)
