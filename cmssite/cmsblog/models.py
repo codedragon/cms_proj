@@ -10,6 +10,9 @@ class Post(models.Model):
     modified_date = models.DateTimeField(auto_now=True)
     published_date = models.DateTimeField(blank=True, null=True)
 
+    def __unicode__(self):
+        return self.title
+
     def __str__(self):
         return self.title
 
@@ -19,3 +22,12 @@ class Category(models.Model):
     description = models.TextField(blank=True)
     posts = models.ManyToManyField(Post, blank=True,
                                    related_name='categories')
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
