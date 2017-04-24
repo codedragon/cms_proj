@@ -1,15 +1,18 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.utils.timezone import utc
+
+import datetime
+
 from cmsblog.models import Post
 from cmsblog.models import Category
-import datetime
-from django.utils.timezone import utc
 
 
 class PostTestCase(TestCase):
     fixtures = ['cmsblog_test_fixture.json', ]
 
     def setUp(self):
+        """Special? Django testing"""
         self.user = User.objects.get(pk=1) # pk = 'primary key' (id)
 
     def test_string_representation(self):
