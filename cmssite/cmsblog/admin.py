@@ -9,6 +9,9 @@ class CategorizationInline(admin.TabularInline):
 
 
 def make_published(modeladmin, request, queryset):
+    """Set publication date for selected posts.
+    Used by: PostAdmin()
+    """
     now = datetime.datetime.now()
     queryset.update(published_date=now)
     make_published.short_description = "Set publication date for selected posts"

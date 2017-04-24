@@ -11,6 +11,9 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True)
 
     def __unicode__(self):
+        """Returns a nice, human-readable representation of the model from the
+        __unicode__() method.
+        """
         return self.title
 
     def __str__(self):
