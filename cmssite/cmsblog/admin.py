@@ -5,6 +5,9 @@ from cmsblog.models import Category
 
 
 class CategorizationInline(admin.TabularInline):
+    """The admin interface has the ability to edit models on the same page as
+    a parent model. These are called inlines.
+    """
     model = Category.posts.through
 
 

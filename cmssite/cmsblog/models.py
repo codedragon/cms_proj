@@ -27,6 +27,12 @@ class Category(models.Model):
                                    related_name='categories')
 
     class Meta:
+        """Model metadata is 'anything that’s not a field', such as ordering
+        options (ordering), database table name (db_table), or human-readable
+        singular and plural names (verbose_name and verbose_name_plural).
+        None are required, and adding class Meta to a model is completely
+        optional.
+        """
         verbose_name_plural = 'Categories'
 
     def __unicode__(self):

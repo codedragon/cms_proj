@@ -12,7 +12,7 @@ class PostTestCase(TestCase):
     fixtures = ['cmsblog_test_fixture.json', ]
 
     def setUp(self):
-        """Special? Django testing"""
+        #Setup run before every test method.
         self.user = User.objects.get(pk=1) # pk = 'primary key' (id)
 
     def test_string_representation(self):
