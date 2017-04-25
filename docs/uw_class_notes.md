@@ -1,6 +1,6 @@
-#UW Class Notes
+# UW Class Notes
 
-##Internet Programming in Python
+## Internet Programming in Python
 
 ### An Introduction To Django
 
