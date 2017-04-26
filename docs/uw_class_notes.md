@@ -13,3 +13,7 @@ https://christyheaton.github.io/training.python_web/html/presentations/session08
 ### Session 09 - Extending Django
 
 https://christyheaton.github.io/training.python_web/html/presentations/session09.html
+
+### Session 10 - Deploying Django
+
+https://christyheaton.github.io/training.python_web/html/presentations/session10.html

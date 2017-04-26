@@ -14,14 +14,14 @@ from cmsblog.models import Post
 #     return HttpResponse(body, content_type="text/plain")
 
 def list_view(request):
-    """Main page content"""
+    """Display all posts"""
     published = Post.objects.exclude(published_date__exact=None)
     posts = published.order_by('-published_date')
     context = {'posts': posts}
     return render(request, 'list.html', context)
 
 def detail_view(request, post_id):
-    """Post content display"""
+    """Display a single post"""
     published = Post.objects.exclude(published_date__exact=None)
     try:
         post = published.get(pk=post_id)
