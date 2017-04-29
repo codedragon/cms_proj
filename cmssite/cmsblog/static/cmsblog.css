@@ -2,6 +2,29 @@ body {
 	color: #586e75;
 	background-color: #fdf6e3;
 	font-family: "Verdana", "Geneva", "sans-serif";
+    font-size: 8pt;
+}
+.leftbox	/* creates left margin */
+{
+	float: left;
+	width: 10%;
+	height: 100%;
+}
+.centerbox	/* Main content */
+{
+	float: left;
+	width: 65%;
+	min-width: 400px;
+	max-width: 800px;
+/* 	border: solid aqua 2pt; */
+}
+.headerbox	/* Child of: .centerboxbox; contains: .floatbox, .titlebox, .navbox */
+{
+	width: 100%;
+	height: 120px;
+	text-indent:18px;
+	color: #fdf6e3;
+	background-color: #073642;
 }
 #container {
     margin:0;
@@ -9,10 +32,13 @@ body {
     margin-top: 0px;
 }
 #header {
-    background-color: #333;
-    border-botton: 1px solid #111;
     margin:0;
     padding:0;
+    width: 100%;
+	height: 120px;
+	text-indent:18px;
+	color: #fdf6e3;
+	background-color: #073642;
 }
 #control-bar {
     margin: 0em 0em 1em;
@@ -68,3 +94,15 @@ ul.categories {
 ul.categories li {
     display: inline;
 }
+h1	/* Used for: headers in .mainbox */
+{
+	font-size: 14pt;
+	font-style: normal;
+}
+h2	/* Used for: headers in .mainbox */
+{
+	font-size: 12pt;
+	font-style: normal;
+}
+a:link {color: #268bd2; font-style: normal; text-decoration:none;}
+a:visited {color: #2aa198; font-style: normal; text-decoration:none;}
