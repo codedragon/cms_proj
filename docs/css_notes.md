@@ -1,4 +1,4 @@
-#CSS Notes
+# CSS Notes
 
 ### Difference between div id and div class
 
@@ -23,3 +23,14 @@ and:
 
 The text would be red because the id selector takes precedence over the class selector.
 
+
+
+
+
+I know that in a stylesheet div#name and #name do the same thing. Personally I've taken to using div#name for most styling I do, with the reasoning that it's slightly faster, and means that I can identify HTML elements more easily by looking at the CSS.
+
+However all of the big websites I seem to look at use #name over div#name (stack overflow included)
+
+In fact I'm finding it very difficult to find many websites at all that use div#name over #name
+
+Is there some advantage to doing #name that I'm missing? Are there any reasons to use it over div#name that I don't yet know about?

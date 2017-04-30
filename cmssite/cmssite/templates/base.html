@@ -17,12 +17,13 @@
             <div id="header">
                 <ul id="control-bar">
                     {% if user.is_authenticated %}
+                        <a href="{%  url 'post_new' %}">new</a>
                         {% if user.is_staff %}<a href="{% url 'admin:index' %}">admin</a>{% endif %}
                         <a href="{% url 'logout' %}">logout</a>
                     {% else %}
                         <a href="{% url 'login' %}">login</a>
                     {% endif %}
-                    </ul>
+                </ul>
             </div>
 
             <div id="container">
