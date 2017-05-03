@@ -1,6 +1,6 @@
 from django.conf.urls import url
 # from cmsblog.views import stub_view
-from cmsblog.views import list_view, detail_view, post_new
+from cmsblog.views import list_view, detail_view, post_new, post_edit
 
 
 urlpatterns = [
