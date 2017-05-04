@@ -1,5 +1,6 @@
 import datetime
 from django.contrib import admin
+from django.core.urlresolvers import reverse  # Added for reverse error
 from cmsblog.models import Post
 from cmsblog.models import Category
 

@@ -15,5 +15,6 @@ urlpatterns = [
         name='post_new'),
     url(r'^post/(?P<pk>\d+)/edit/$',
         post_edit,
+        # view.post_edit 'views not defined'
         name='post_edit'),
 ]
