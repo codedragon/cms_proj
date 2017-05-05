@@ -21,8 +21,9 @@ def list_view(request):
     """Display all posts"""
     published = Post.objects.exclude(published_date__exact=None)
     posts = published.order_by('-published_date')
-    context = {'posts': posts}
+    context = {'posts': posts} # templates are rendered by passing in a context
     return render(request, 'list.html', context)
+    # render() is a shortcut for render_to_response (uses RequestContext)
 
 
 def detail_view(request, post_id):
@@ -37,6 +38,7 @@ def detail_view(request, post_id):
 
 
 def post_new(request):
+    """Create new Post"""
     # If method is POST then construct the PostForm with data from the form
     # Else blank form (new)
     if request.method == "POST":
@@ -57,6 +59,7 @@ def post_new(request):
 
 
 def post_edit(request, pk):
+    """Edit Post"""
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)

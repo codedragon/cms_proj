@@ -17,3 +17,9 @@ https://christyheaton.github.io/training.python_web/html/presentations/session09
 ### Session 10 - Deploying Django
 
 https://christyheaton.github.io/training.python_web/html/presentations/session10.html
+
+### Logging and the logging module
+
+https://uwpce-pythoncert.github.io/Py300/logging.html#logging
+https://docs.djangoproject.com/en/1.11/topics/logging/
+

@@ -19,3 +19,9 @@
 - _LiveServerTestCase_ launches the django server during test runs for front-end acceptance tests.
 
 https://docs.djangoproject.com/en/1.11/topics/testing/overview/
+
+
+    POST = Create
+    GET = Read
+    PUT = Update
+    DELETE = Delete
