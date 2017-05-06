@@ -108,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+# TODO Correct Time Zone info
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -131,6 +132,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
+            # TODO Make log file variable and put in a more reasonable location
             'filename': '/Users/paulvosper/uw_python/projects/cms_proj/cmssite/debug.log',
         },
     },

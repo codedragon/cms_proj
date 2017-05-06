@@ -25,3 +25,7 @@ https://docs.djangoproject.com/en/1.11/topics/testing/overview/
     GET = Read
     PUT = Update
     DELETE = Delete
+
+What should I test?
+
+How do I test ORM functions?

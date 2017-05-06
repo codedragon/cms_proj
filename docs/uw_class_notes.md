@@ -1,4 +1,5 @@
 # UW Class Notes
+This actually has wound up being links to tutorials & references, not just UW class notes
 
 ## Internet Programming in Python
 
@@ -22,4 +23,7 @@ https://christyheaton.github.io/training.python_web/html/presentations/session10
 
 https://uwpce-pythoncert.github.io/Py300/logging.html#logging
 https://docs.djangoproject.com/en/1.11/topics/logging/
+
+### Editing multiple objects in Django with forms 
+https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/
 
