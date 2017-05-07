@@ -27,3 +27,6 @@ https://docs.djangoproject.com/en/1.11/topics/logging/
 ### Editing multiple objects in Django with forms 
 https://collingrady.wordpress.com/2008/02/18/editing-multiple-objects-in-django-with-newforms/
 
+### Logging Cookbook
+https://docs.python.org/2/howto/logging-cookbook.html
+

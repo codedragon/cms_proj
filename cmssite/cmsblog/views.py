@@ -6,8 +6,19 @@ from cmsblog.models import Post
 from cmsblog.forms import PostForm
 import logging
 
-logger = logging.getLogger('views')
-# This isn't writing to log file
+
+# create logger with module name
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+# create file handler which logs even debug messages
+log_file_name = __name__ + '.log'
+fh = logging.FileHandler(log_file_name)
+fh.setLevel(logging.DEBUG)
+# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+# add the handlers to the logger
+logger.addHandler(fh)
 
 
 # def stub_view(request, *args, **kwargs):
