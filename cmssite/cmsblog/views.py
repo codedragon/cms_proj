@@ -2,8 +2,8 @@ from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 # from django.template import RequestContext, loader
-from cmsblog.models import Post
-from cmsblog.forms import PostForm
+from cmsblog.models import Post, Category
+from cmsblog.forms import PostForm, CategoryForm
 import logging
 
 
@@ -19,17 +19,6 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 fh.setFormatter(formatter)
 # add the handlers to the logger
 logger.addHandler(fh)
-
-
-# def stub_view(request, *args, **kwargs):
-#     body = "Stub View\n\n"
-#     if args:
-#         body += "Args:\n"
-#         body += "\n".join(["\t%s" % a for a in args])
-#     if kwargs:
-#         body += "Kwargs:\n"
-#         body += "\n".join(["\t%s: %s" % i for i in kwargs.items()])
-#     return HttpResponse(body, content_type="text/plain")
 
 
 def list_view(request):
@@ -63,9 +52,10 @@ def post_new(request):
     # Else blank form (new)
     if request.method == "POST":
         logger.info('----- executing post_new POST -----')
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
+        pform = PostForm(request.POST)
+        cforms = [CategoryForm(request.POST, prefix=str(x), instance=Category()) for x in range(0,3)]
+        if pform.is_valid() and all([cf.isvalid() for cf in cforms]):
+            post = pform.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
@@ -73,11 +63,33 @@ def post_new(request):
             posts = published.order_by('-published_date')
             context = {'posts': posts}
             return render(request, 'list.html', context)
-            # return redirect('detail.html', pk=post.pk)
     else:
         logger.info('----- executing post_new NOT POST -----')
         form = PostForm()
     return render(request, 'post_edit.html', {'form': form})
+
+
+# def post_new(request):
+#     """Create new Post"""
+#     # TODO Display forms for Post and Category
+#     # If method is POST then construct the PostForm with data from the form
+#     # Else blank form (new)
+#     if request.method == "POST":
+#         logger.info('----- executing post_new POST -----')
+#         form = PostForm(request.POST)
+#         if form.is_valid():
+#             post = form.save(commit=False)
+#             post.author = request.user
+#             post.published_date = timezone.now()
+#             post.save()
+#             published = Post.objects.exclude(published_date__exact=None)
+#             posts = published.order_by('-published_date')
+#             context = {'posts': posts}
+#             return render(request, 'list.html', context)
+#     else:
+#         logger.info('----- executing post_new NOT POST -----')
+#         form = PostForm()
+#     return render(request, 'post_edit.html', {'form': form})
 
 
 def post_edit(request, pk):
@@ -92,13 +104,9 @@ def post_edit(request, pk):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            # return render(request, 'blog_detail', context)
-            # return redirect('blog_detail', pk=post.pk)
             context = {'post': post}
             return render(request, 'detail.html', context)
-
     else:
         logger.info('----- executing post_edit NOT POST -----')
         form = PostForm(instance=post)
     return render(request, 'post_edit.html', {'form': form})
-    # return render(request, 'blog/post_edit.html', {'form': form})
