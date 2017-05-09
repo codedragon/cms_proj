@@ -52,10 +52,9 @@ def post_new(request):
     # Else blank form (new)
     if request.method == "POST":
         logger.info('----- executing post_new POST -----')
-        pform = PostForm(request.POST)
-        cforms = [CategoryForm(request.POST, prefix=str(x), instance=Category()) for x in range(0,3)]
-        if pform.is_valid() and all([cf.isvalid() for cf in cforms]):
-            post = pform.save(commit=False)
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
@@ -67,29 +66,6 @@ def post_new(request):
         logger.info('----- executing post_new NOT POST -----')
         form = PostForm()
     return render(request, 'post_edit.html', {'form': form})
-
-
-# def post_new(request):
-#     """Create new Post"""
-#     # TODO Display forms for Post and Category
-#     # If method is POST then construct the PostForm with data from the form
-#     # Else blank form (new)
-#     if request.method == "POST":
-#         logger.info('----- executing post_new POST -----')
-#         form = PostForm(request.POST)
-#         if form.is_valid():
-#             post = form.save(commit=False)
-#             post.author = request.user
-#             post.published_date = timezone.now()
-#             post.save()
-#             published = Post.objects.exclude(published_date__exact=None)
-#             posts = published.order_by('-published_date')
-#             context = {'posts': posts}
-#             return render(request, 'list.html', context)
-#     else:
-#         logger.info('----- executing post_new NOT POST -----')
-#         form = PostForm()
-#     return render(request, 'post_edit.html', {'form': form})
 
 
 def post_edit(request, pk):
