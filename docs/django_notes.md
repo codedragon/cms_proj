@@ -2,6 +2,11 @@
 
 https://docs.djangoproject.com/en/dev/topics/forms/#looping-over-the-form-s-fields
 
+Replacing {{  form.as_p }}
+
+
+
+
 If you’re using the same HTML for each of your form fields, you can reduce duplicate code by looping through each field in turn using a {% for %} loop:
 
 {% for field in form %}

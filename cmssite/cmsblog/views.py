@@ -51,6 +51,7 @@ def post_new(request):
     # If method is POST then construct the PostForm with data from the form
     # Else blank form (new)
     if request.method == "POST":
+        # GET and POST are the only HTTP methods to use when dealing with forms
         logger.info('----- executing post_new POST -----')
         form = PostForm(request.POST)
         if form.is_valid():
@@ -65,6 +66,7 @@ def post_new(request):
     else:
         logger.info('----- executing post_new NOT POST -----')
         form = PostForm()
+        # model = Post fields = ('title', 'text',)
     return render(request, 'post_edit.html', {'form': form})
 
 
@@ -85,4 +87,6 @@ def post_edit(request, pk):
     else:
         logger.info('----- executing post_edit NOT POST -----')
         form = PostForm(instance=post)
+    logger.info('request: %s', request)  # s string required
+    logger.info('form: %s', form)
     return render(request, 'post_edit.html', {'form': form})
