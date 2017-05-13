@@ -3,7 +3,15 @@
 {%  block content %}
     <h1>New post</h1>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{  form.as_p }}
+        {# form.as_p #}
+        <p>{{ form.title }}</p>
+        <p>{{ form.text }}</p>
+        <p>categories go here</p>
+        {% for category in form.categories.all %}
+            <p>debug: category loop</p>
+            <p>{{ category }}</p>
+        {% endfor %}
+    <p>end categories</p>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}
