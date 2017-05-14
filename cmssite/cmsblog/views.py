@@ -86,7 +86,13 @@ def post_edit(request, pk):
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
         form = PostForm(request.POST, instance=post)
-        cform = CategoryForm(request.POST, instance=cats)
+        logger.info('form type: %s', type(form))
+        logger.info('form: %s', form)
+        # Ex:  cforms = [ChoiceForm(request.POST, prefix=str(x), instance=Choice()) for x in range(0,3)]
+        cform = [CategoryForm(request.POST, prefix=str(x), instance=Category()) for x in range(0,cats.count())]
+        # [list comprehension] return (potentially empty) list object with each element a form
+        for cf in cform:
+            logger.info('cf: %s', cf)
         logger.info('cform type: %s', type(cform))
         logger.info('cform: %s', cform)
         if form.is_valid():
