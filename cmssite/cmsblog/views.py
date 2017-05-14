@@ -33,7 +33,8 @@ def list_view(request):
 
 
 def detail_view(request, post_id):
-    """Display a single post"""
+    """Display a single post
+    by getting all posts then filtering by pk"""
     logger.info('----- executing detail_view -----')
     # TODO add delete functionality (here?)
     published = Post.objects.exclude(published_date__exact=None)
@@ -42,11 +43,14 @@ def detail_view(request, post_id):
     except Post.DoesNotExist:
         raise Http404
     context = {'post': post}
+    logger.info('request: %s', request)  # s string required
+    logger.info('post: %s', post)
     return render(request, 'detail.html', context)
 
 
 def post_new(request):
-    """Create new Post"""
+    """Create new Post
+    using form"""
     # TODO Display forms for Post and Category
     # If method is POST then construct the PostForm with data from the form
     # Else blank form (new)
@@ -66,17 +70,25 @@ def post_new(request):
     else:
         logger.info('----- executing post_new NOT POST -----')
         form = PostForm()
-        # model = Post fields = ('title', 'text',)
+        # model = Post; fields = ('title', 'text',)
     return render(request, 'post_edit.html', {'form': form})
 
 
 def post_edit(request, pk):
-    """Edit Post"""
+    """Edit Post
+    GET = form
+    POST = post"""
     # TODO Display forms for Post and Category
     post = get_object_or_404(Post, pk=pk)
+    cats = post.categories.all()  # QuerySet
+    # 'QuerySet' object has no attribute '_meta'
+    logger.info('cats: %s', cats)
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
         form = PostForm(request.POST, instance=post)
+        cform = CategoryForm(request.POST, instance=cats)
+        logger.info('cform type: %s', type(cform))
+        logger.info('cform: %s', cform)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user

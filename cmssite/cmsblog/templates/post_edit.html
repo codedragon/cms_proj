@@ -7,11 +7,12 @@
         <p>{{ form.title }}</p>
         <p>{{ form.text }}</p>
         <p>categories go here</p>
-        {% for category in form.categories.all %}
-            <p>debug: category loop</p>
-            <p>{{ category }}</p>
-        {% endfor %}
-    <p>end categories</p>
+        <ul class="categories">
+            {% for category in post.categories.all %}
+                <li>{{ category }}</li>
+            {% endfor %}
+        </ul>
+        <p>end categories</p>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
 {% endblock %}
