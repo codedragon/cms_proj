@@ -81,27 +81,27 @@ def post_edit(request, pk):
     # TODO Display forms for Post and Category
     post = get_object_or_404(Post, pk=pk)
     cats = post.categories.all()  # QuerySet
-    # 'QuerySet' object has no attribute '_meta'
-    logger.info('cats: %s', cats)
+    logger.info('type post: %s', type(post))
+    logger.info('type cats: %s', type(cats))
+    logger.info('type cats[0]: %s', type(cats[0]))
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
         form = PostForm(request.POST, instance=post)
+        catform = CategoryForm(request.POST, instance=cats[0])
         logger.info('form type: %s', type(form))
         logger.info('form: %s', form)
-        # Ex:  cforms = [ChoiceForm(request.POST, prefix=str(x), instance=Choice()) for x in range(0,3)]
-        cform = [CategoryForm(request.POST, prefix=str(x), instance=Category()) for x in range(0,cats.count())]
-        # [list comprehension] return (potentially empty) list object with each element a form
-        for cf in cform:
-            logger.info('cf: %s', cf)
-        logger.info('cform type: %s', type(cform))
-        logger.info('cform: %s', cform)
+        logger.info('catform type: %s', type(catform))
+        logger.info('catform: %s', catform)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
             context = {'post': post}
+            logger.info('context: %s', context)
             return render(request, 'detail.html', context)
+        else:
+            logger.info('form is not valid!')
     else:
         logger.info('----- executing post_edit NOT POST -----')
         form = PostForm(instance=post)
