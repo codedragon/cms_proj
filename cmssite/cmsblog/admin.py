@@ -44,6 +44,7 @@ class PostAdmin(admin.ModelAdmin):
 
 
 class CategoryAdmin(admin.ModelAdmin):
+    fields = ('name', 'description')
     exclude = ('posts', )
 
 
