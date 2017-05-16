@@ -81,9 +81,10 @@ def post_edit(request, pk):
     # TODO Display forms for Post and Category
     post = get_object_or_404(Post, pk=pk)
     cats = post.categories.all()  # QuerySet
-    logger.info('type post: %s', type(post))
-    logger.info('type cats: %s', type(cats))
-    logger.info('type cats[0]: %s', type(cats[0]))
+    logger.info('type post: %s', type(post))  # <class 'cmsblog.models.Post'>
+    logger.info('type cats: %s', type(cats))  # <class 'django.db.models.query.QuerySet'>
+    logger.info('type cats[0]: %s', type(cats[0]))  # <class 'cmsblog.models.Category'>
+    logger.info('cats[0].name: %s', cats[0].name)  # This works -
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
         form = PostForm(request.POST, instance=post)

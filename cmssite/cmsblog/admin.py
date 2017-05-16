@@ -3,13 +3,30 @@ from django.contrib import admin
 from django.core.urlresolvers import reverse  # Added for reverse error
 from cmsblog.models import Post
 from cmsblog.models import Category
+import logging
+
+
+# create logger with module name
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+# create file handler which logs even debug messages
+log_file_name = __name__ + '.log'
+fh = logging.FileHandler(log_file_name)
+fh.setLevel(logging.DEBUG)
+# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+# add the handlers to the logger
+logger.addHandler(fh)
 
 
 class CategorizationInline(admin.TabularInline):
     """The admin interface has the ability to edit models on the same page as
     a parent model. These are called inlines.
     """
+    logger.info('CategorizationInline')
     model = Category.posts.through
+    logger.info('type model: %s', type(model))
 
 
 def make_published(modeladmin, request, queryset):
