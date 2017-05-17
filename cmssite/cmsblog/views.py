@@ -78,21 +78,21 @@ def post_edit(request, pk):
     """Edit Post
     GET = form
     POST = post"""
-    # TODO Display forms for Post and Category
     post = get_object_or_404(Post, pk=pk)
     cats = post.categories.all()  # QuerySet
     logger.info('type post: %s', type(post))  # <class 'cmsblog.models.Post'>
     logger.info('type cats: %s', type(cats))  # <class 'django.db.models.query.QuerySet'>
     logger.info('type cats[0]: %s', type(cats[0]))  # <class 'cmsblog.models.Category'>
-    logger.info('cats[0].name: %s', cats[0].name)  # This works -
+    logger.info('cats[0].name: %s', cats[0].name)  # This works - instance of class has correct name
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
+        logger.info('POST: %s', request.POST)  # POST does not contain cat data
         form = PostForm(request.POST, instance=post)
         catform = CategoryForm(request.POST, instance=cats[0])
         logger.info('form type: %s', type(form))
         logger.info('form: %s', form)
         logger.info('catform type: %s', type(catform))
-        logger.info('catform: %s', catform)
+        logger.info('catform: %s', catform)  # BAD DATA!!!
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
