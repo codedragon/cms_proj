@@ -36,7 +36,6 @@ def detail_view(request, post_id):
     """Display a single post
     by getting all posts then filtering by pk"""
     logger.info('----- executing detail_view -----')
-    # TODO add delete functionality (here?)
     published = Post.objects.exclude(published_date__exact=None)
     try:
         post = published.get(pk=post_id)
@@ -44,14 +43,14 @@ def detail_view(request, post_id):
         raise Http404
     context = {'post': post}
     logger.info('request: %s', request)  # s string required
-    logger.info('post: %s', post)
+    logger.info('post: %s', post)  # returns name of post
+    logger.info('type post: %s', type(post))
     return render(request, 'detail.html', context)
 
 
 def post_new(request):
     """Create new Post
     using form"""
-    # TODO Display forms for Post and Category
     # If method is POST then construct the PostForm with data from the form
     # Else blank form (new)
     if request.method == "POST":
@@ -78,17 +77,33 @@ def post_edit(request, pk):
     """Edit Post
     GET = form
     POST = post"""
+    # request: <WSGIRequest: POST '/post/14/edit/'>
+    # pk (Primary Key):
     post = get_object_or_404(Post, pk=pk)
-    cats = post.categories.all()  # QuerySet
-    logger.info('type post: %s', type(post))  # <class 'cmsblog.models.Post'>
-    logger.info('type cats: %s', type(cats))  # <class 'django.db.models.query.QuerySet'>
-    logger.info('type cats[0]: %s', type(cats[0]))  # <class 'cmsblog.models.Category'>
-    logger.info('cats[0].name: %s', cats[0].name)  # This works - instance of class has correct name
+    # type(post) = <class 'cmsblog.models.Post'>
+    cats = post.categories.all()
+    # type(cats) = <class 'django.db.models.query.QuerySet'>
+    # type(cats[0]) = <class 'cmsblog.models.Category'>
+    # cats[0].name is correct
+    logger.info('request: %s', request)
+    logger.info('pk: %s', pk)
+    logger.info('type post: %s', type(post))
+    logger.info('type cats: %s', type(cats))
+    logger.info('type cats[0]: %s', type(cats[0]))
+    logger.info('cats[0].name: %s', cats[0].name)
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
         logger.info('POST: %s', request.POST)  # POST does not contain cat data
         form = PostForm(request.POST, instance=post)
+        # form type: <class 'cmsblog.forms.PostForm'>
+        # ...name="title" value="Time" maxlength="128" required id="id_title"..
         catform = CategoryForm(request.POST, instance=cats[0])
+        if catform.is_valid():
+            logger.info('! catform is valid!')
+        else:
+            logger.info('...catform is NOT valid...')
+        # catform type: <class 'cmsblog.forms.CategoryForm'>
+        # ...class="errorlist"><li>This field is required.</li>
         logger.info('form type: %s', type(form))
         logger.info('form: %s', form)
         logger.info('catform type: %s', type(catform))
