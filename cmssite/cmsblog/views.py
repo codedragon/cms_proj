@@ -82,6 +82,7 @@ def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     # type(post) = <class 'cmsblog.models.Post'>
     cats = post.categories.all()
+    cat = cats[0].clean()
     # type(cats) = <class 'django.db.models.query.QuerySet'>
     # type(cats[0]) = <class 'cmsblog.models.Category'>
     # cats[0].name is correct
@@ -97,11 +98,11 @@ def post_edit(request, pk):
         form = PostForm(request.POST, instance=post)
         # form type: <class 'cmsblog.forms.PostForm'>
         # ...name="title" value="Time" maxlength="128" required id="id_title"..
-        catform = CategoryForm(request.POST, instance=cats[0])
-        if catform.is_valid():
-            logger.info('! catform is valid!')
-        else:
-            logger.info('...catform is NOT valid...')
+        catform = CategoryForm(cat)
+        # if catform.is_valid():
+        #     logger.info('! catform is valid!')
+        # else:
+        #     logger.info('...catform is NOT valid...')
         # catform type: <class 'cmsblog.forms.CategoryForm'>
         # ...class="errorlist"><li>This field is required.</li>
         logger.info('form type: %s', type(form))

@@ -26,7 +26,13 @@ class CategorizationInline(admin.TabularInline):
     """
     logger.info('CategorizationInline')
     model = Category.posts.through
+    # <class 'django.db.models.base.ModelBase'>
+    # <class 'cmsblog.models.Category_posts'>
+    # Includes:
     logger.info('type model: %s', type(model))
+    logger.info('model: %s', model)
+    logger.info('dir model: %s', dir(model))
+    logger.info('model.category: %s', print(model.category))
 
 
 def make_published(modeladmin, request, queryset):
