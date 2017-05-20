@@ -8,9 +8,7 @@
         <p>{{ form.text }}</p>
         <p>categories go here</p>
         <ul class="categories">
-            {% for category in form.category %}
-                <li>{{ category }}</li>
-            {% endfor %}
+            <li>{{ catform.name }}</li>
         </ul>
         <p>end categories</p>
         <button type="submit" class="save btn btn-default">Save</button>

@@ -82,7 +82,7 @@ def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     # type(post) = <class 'cmsblog.models.Post'>
     cats = post.categories.all()
-    cat = cats[0].clean()
+    cat = cats[1].clean()
     # type(cats) = <class 'django.db.models.query.QuerySet'>
     # type(cats[0]) = <class 'cmsblog.models.Category'>
     # cats[0].name is correct
