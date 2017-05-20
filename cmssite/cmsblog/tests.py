@@ -12,10 +12,11 @@ class PostTestCase(TestCase):
     fixtures = ['cmsblog_test_fixture.json', ]
 
     def setUp(self):
-        #Setup run before every test method.
-        self.user = User.objects.get(pk=1) # pk = 'primary key' (id)
+        # Setup is run before every test method.
+        self.user = User.objects.get(pk=1)  # pk = 'primary key' (id)
 
     def test_string_representation(self):
+        """Checks to see if instance returns name string"""
         expected = "This is a title"
         p1 = Post(title=expected)
         actual = str(p1)
@@ -25,6 +26,7 @@ class PostTestCase(TestCase):
 class CategoryTestCase(TestCase):
 
     def test_string_representation(self):
+        """Checks to see if instance returns name string"""
         expected = "A Category"
         c1 = Category(name=expected)
         actual = str(c1)
@@ -50,6 +52,7 @@ class FrontEndTestCase(TestCase):
             post.save()
 
     def test_list_only_published(self):
+        """This will show up in --settings v 2"""
         resp = self.client.get('/')
         # the content of the rendered response is always a bytestring
         resp_text = resp.content.decode(resp.charset)
