@@ -4,8 +4,7 @@ from django.utils.timezone import utc
 
 import datetime
 
-from cmsblog.models import Post
-from cmsblog.models import Category
+from cmsblog.models import Post, Category, Event, Talk, Speaker, Venue
 
 
 class PostTestCase(TestCase):
@@ -37,8 +36,8 @@ class EventTestCase(TestCase):
 
     def test_string_representation(self):
         """Checks to see if Event instance returns correct name string"""
-        expected = "A Category"
-        c1 = Event(name=expected)
+        expected = "An Event"
+        c1 = Event(title=expected)
         actual = str(c1)
         self.assertEqual(expected, actual)
 
@@ -46,9 +45,9 @@ class EventTestCase(TestCase):
 class TalkTestCase(TestCase):
 
     def test_string_representation(self):
-        """Checks to see if Talk instance returns correct name string"""
-        expected = "A Category"
-        c1 = Talk(name=expected)
+        """Checks to see if Talk instance returns correct title string"""
+        expected = "A Talk"
+        c1 = Talk(title=expected)
         actual = str(c1)
         self.assertEqual(expected, actual)
 
@@ -57,7 +56,7 @@ class SpeakerTestCase(TestCase):
 
     def test_string_representation(self):
         """Checks to see if Speaker instance returns correct name string"""
-        expected = "A Category"
+        expected = "A Speaker"
         c1 = Speaker(name=expected)
         actual = str(c1)
         self.assertEqual(expected, actual)
@@ -67,7 +66,7 @@ class VenueTestCase(TestCase):
 
     def test_string_representation(self):
         """Checks to see if Venue instance returns correct name string"""
-        expected = "A Category"
+        expected = "A Venue"
         c1 = Venue(name=expected)
         actual = str(c1)
         self.assertEqual(expected, actual)

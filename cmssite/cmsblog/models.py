@@ -81,10 +81,10 @@ class Speaker(models.Model):
         """Returns a nice, human-readable representation of the model from the
         __unicode__() method.
         """
-        return self.title
+        return self.name
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Venue(models.Model):
@@ -101,9 +101,9 @@ class Venue(models.Model):
         """Returns a nice, human-readable representation of the model from the
         __unicode__() method.
         """
-        return self.title
+        return self.name
 
     def __str__(self):
-        return self.title
+        return self.name
 
 

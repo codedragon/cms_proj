@@ -9,8 +9,8 @@ python manage.py test
 python manage.py test -v 2
 ```
 
-## Coverage report: 70%
-created at 2017-05-20 13:29
+## Coverage report: 76%
+created at 2017-05-20 21:02
 
 https://uwpce-pythoncert.github.io/Py300/testing.html
 
