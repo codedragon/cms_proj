@@ -1,4 +1,7 @@
 # UW Class Notes
+
+_External references to useful information_
+
 This actually has wound up being links to tutorials & references, not just UW class notes
 
 ## Internet Programming in Python

@@ -16,7 +16,7 @@ class PostTestCase(TestCase):
         self.user = User.objects.get(pk=1)  # pk = 'primary key' (id)
 
     def test_string_representation(self):
-        """Checks to see if instance returns name string"""
+        """Checks to see if Post instance returns correct name string"""
         expected = "This is a title"
         p1 = Post(title=expected)
         actual = str(p1)
@@ -26,7 +26,7 @@ class PostTestCase(TestCase):
 class CategoryTestCase(TestCase):
 
     def test_string_representation(self):
-        """Checks to see if instance returns name string"""
+        """Checks to see if Category instance returns correct name string"""
         expected = "A Category"
         c1 = Category(name=expected)
         actual = str(c1)
@@ -52,7 +52,7 @@ class FrontEndTestCase(TestCase):
             post.save()
 
     def test_list_only_published(self):
-        """This will show up in --settings v 2"""
+        """Check to see (List only published)"""
         resp = self.client.get('/')
         # the content of the rendered response is always a bytestring
         resp_text = resp.content.decode(resp.charset)
@@ -65,6 +65,7 @@ class FrontEndTestCase(TestCase):
                 self.assertNotContains(resp, title)
 
     def test_details_only_published(self):
+        """Check to see (Details only published)"""
         for count in range(1, 11):
             title = "Post %d Title" % count
             post = Post.objects.get(title=title)

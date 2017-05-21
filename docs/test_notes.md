@@ -15,7 +15,7 @@ created at 2017-05-20 13:29
 https://uwpce-pythoncert.github.io/Py300/testing.html
 
 ```
-coverage run --source='.' manage.py test
+coverage run --source='.' --omit cmssite/wsgi.py manage.py test
 
 coverage run my_program.py arg1 arg2
 coverage report
