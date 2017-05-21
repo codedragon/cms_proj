@@ -33,6 +33,46 @@ class CategoryTestCase(TestCase):
         self.assertEqual(expected, actual)
 
 
+class EventTestCase(TestCase):
+
+    def test_string_representation(self):
+        """Checks to see if Event instance returns correct name string"""
+        expected = "A Category"
+        c1 = Event(name=expected)
+        actual = str(c1)
+        self.assertEqual(expected, actual)
+
+
+class TalkTestCase(TestCase):
+
+    def test_string_representation(self):
+        """Checks to see if Talk instance returns correct name string"""
+        expected = "A Category"
+        c1 = Talk(name=expected)
+        actual = str(c1)
+        self.assertEqual(expected, actual)
+
+
+class SpeakerTestCase(TestCase):
+
+    def test_string_representation(self):
+        """Checks to see if Speaker instance returns correct name string"""
+        expected = "A Category"
+        c1 = Speaker(name=expected)
+        actual = str(c1)
+        self.assertEqual(expected, actual)
+
+
+class VenueTestCase(TestCase):
+
+    def test_string_representation(self):
+        """Checks to see if Venue instance returns correct name string"""
+        expected = "A Category"
+        c1 = Venue(name=expected)
+        actual = str(c1)
+        self.assertEqual(expected, actual)
+
+
 class FrontEndTestCase(TestCase):
     """test views provided in the front-end"""
     fixtures = ['cmsblog_test_fixture.json', ]
