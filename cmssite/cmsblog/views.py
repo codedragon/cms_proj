@@ -2,8 +2,8 @@ from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 # from django.template import RequestContext, loader
-from cmsblog.models import Post, Category
-from cmsblog.forms import PostForm, CategoryForm
+from cmsblog.models import *
+from cmsblog.forms import *
 import logging
 
 
@@ -128,6 +128,47 @@ def post_edit(request, pk):
 
 
 def post_index(request):
+    """Display all posts"""
+    logger.info('----- executing post_index -----')
+    published = Post.objects.exclude(published_date__exact=None)
+    posts = published.order_by('-published_date')
+    context = {'posts': posts}
+    # templates are rendered by passing in a context
+    return render(request, 'post_index.html', context)
+    # render() is a shortcut for render_to_response (uses RequestContext)
+
+
+def event_index(request):
+    """Display all posts"""
+    logger.info('----- executing event_index -----')
+    events = Event.objects.all()
+    context = {'events': events}
+    return render(request, 'event_index.html', context)
+
+
+def talk_index(request):
+    """Display all posts"""
+    logger.info('----- executing post_index -----')
+    published = Post.objects.exclude(published_date__exact=None)
+    posts = published.order_by('-published_date')
+    context = {'posts': posts}
+    # templates are rendered by passing in a context
+    return render(request, 'post_index.html', context)
+    # render() is a shortcut for render_to_response (uses RequestContext)
+
+
+def speaker_index(request):
+    """Display all posts"""
+    logger.info('----- executing post_index -----')
+    published = Post.objects.exclude(published_date__exact=None)
+    posts = published.order_by('-published_date')
+    context = {'posts': posts}
+    # templates are rendered by passing in a context
+    return render(request, 'post_index.html', context)
+    # render() is a shortcut for render_to_response (uses RequestContext)
+
+
+def venue_index(request):
     """Display all posts"""
     logger.info('----- executing post_index -----')
     published = Post.objects.exclude(published_date__exact=None)

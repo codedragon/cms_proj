@@ -1,37 +1,4 @@
 {% extends "base.html" %}{% block content %}
-    <h1>New Post</h1>
-    {% if user.is_authenticated %}
-        <a href="{%  url 'post_new' %}">New Post</a>
-    {% endif %}
-    <p>Post</p>
-    <p>Category</p>
-    <hr>
-    <p>Event</p>
-    <p>Talk</p>
-    <p>Speaker</p>
-    <p>Venue</p>
-
-
-
-
-    {% comment %} We should clean this up {% endcomment %}
-    <h1>Recent Posts</h1>
-    {% for post in posts %}
-    <div class="post">
-        <h2>
-            <a href="{% url 'blog_detail' post.pk %}">{{ post }}</a>
-        </h2>
-        <p class="byline">
-            Posted by {{ post.author }} &mdash; {{ post.published_date }}
-        </p>
-        <div class="post-body">
-            {{ post.text }}
-        </div>
-        <ul class="categories">
-            {% for category in post.categories.all %}
-                <li>{{ category }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endfor %}
+    <h1>Calendar</h1>
+    <p>...will go here</p>
 {% endblock %}

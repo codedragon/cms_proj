@@ -44,7 +44,7 @@ class Category(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=128)
-    event_time = models.DateTimeField(auto_now_add=True)
+    event_time = models.DateTimeField(auto_now_add=False)
 
     def __unicode__(self):
         """Returns a nice, human-readable representation of the model from the

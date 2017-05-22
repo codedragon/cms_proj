@@ -3,17 +3,18 @@
 
 <html>
 
+
     <head>
         <title>CMSBlog</title>
         <link type="text/css" rel="stylesheet" href={% static 'cmsblog.css' %}
     </head>
+
 
     <body>
         <div class="leftbox">
             <p>  </p>
             {% comment %} There needs to be a bit of whitespace here {% endcomment %}
         </div>
-
         <div class="centerbox">
             <div id="header">
                 <ul id="control-bar">
@@ -24,12 +25,18 @@
                         <a href="{% url 'login' %}">Login</a>
                     {% endif %}
                 </ul>
-                <p>-- This is in base but should be page name or something --</p>
-                <p>-- This should be the NavBar --</p>
-                <p>Blog | Categories | Here</p>
-
+                <div class="titlebox">
+					<p>A CMS Project in Django</p>
+				</div>
+				<div class="navbox">
+                    <a class="navbox" href="/">Home&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'event_index' %}">Event&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'talk_index' %}">Talk&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'speaker_index' %}">Speaker&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'venue_index' %}">Venue&nbsp;&middot;</a>
+                    <a class="navbox" href="{% url 'post_index' %}">Blog Posts</a>
+				</div>
             </div>
-
             <div id="container">
                 <div id="content">
                     {% block content %}
@@ -39,4 +46,6 @@
             </div>
         </div>
     </body>
+
+
 </html>
