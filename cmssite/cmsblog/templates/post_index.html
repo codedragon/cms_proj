@@ -1,21 +1,12 @@
 {% extends "base.html" %}{% block content %}
+    <h1>OK, New Territory: this is post_index.html</h1>
+    <p>Though it more properly should be blog_index.html</p>
     <h1>New Post</h1>
     {% if user.is_authenticated %}
         <a href="{%  url 'post_new' %}">New Post</a>
     {% endif %}
-    <p>Post</p>
-    <p>Category</p>
-    <hr>
-    <p>Event</p>
-    <p>Talk</p>
-    <p>Speaker</p>
-    <p>Venue</p>
-
-
-
-
-    {% comment %} We should clean this up {% endcomment %}
     <h1>Recent Posts</h1>
+    {% comment %} here is where the query happens {% endcomment %}
     {% for post in posts %}
     <div class="post">
         <h2>

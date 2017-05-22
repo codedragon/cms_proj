@@ -81,24 +81,24 @@ def post_edit(request, pk):
     # pk (Primary Key):
     post = get_object_or_404(Post, pk=pk)
     # type(post) = <class 'cmsblog.models.Post'>
-    cats = post.categories.all()
-    cat = cats[1].clean()
+    # cats = post.categories.all()
+    # cat = cats[1].clean()
     # type(cats) = <class 'django.db.models.query.QuerySet'>
     # type(cats[0]) = <class 'cmsblog.models.Category'>
     # cats[0].name is correct
     logger.info('request: %s', request)
     logger.info('pk: %s', pk)
     logger.info('type post: %s', type(post))
-    logger.info('type cats: %s', type(cats))
-    logger.info('type cats[0]: %s', type(cats[0]))
-    logger.info('cats[0].name: %s', cats[0].name)
+    # logger.info('type cats: %s', type(cats))
+    # logger.info('type cats[0]: %s', type(cats[0]))
+    # logger.info('cats[0].name: %s', cats[0].name)
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
         logger.info('POST: %s', request.POST)  # POST does not contain cat data
         form = PostForm(request.POST, instance=post)
         # form type: <class 'cmsblog.forms.PostForm'>
         # ...name="title" value="Time" maxlength="128" required id="id_title"..
-        catform = CategoryForm(cat)
+        # catform = CategoryForm(cat)
         # if catform.is_valid():
         #     logger.info('! catform is valid!')
         # else:
@@ -107,8 +107,8 @@ def post_edit(request, pk):
         # ...class="errorlist"><li>This field is required.</li>
         logger.info('form type: %s', type(form))
         logger.info('form: %s', form)
-        logger.info('catform type: %s', type(catform))
-        logger.info('catform: %s', catform)  # BAD DATA!!!
+        # logger.info('catform type: %s', type(catform))
+        # logger.info('catform: %s', print(catform))  # BAD DATA!!!
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -125,3 +125,14 @@ def post_edit(request, pk):
     logger.info('request: %s', request)  # s string required
     logger.info('form: %s', form)
     return render(request, 'post_edit.html', {'form': form})
+
+
+def post_index(request):
+    """Display all posts"""
+    logger.info('----- executing post_index -----')
+    published = Post.objects.exclude(published_date__exact=None)
+    posts = published.order_by('-published_date')
+    context = {'posts': posts}
+    # templates are rendered by passing in a context
+    return render(request, 'post_index.html', context)
+    # render() is a shortcut for render_to_response (uses RequestContext)
