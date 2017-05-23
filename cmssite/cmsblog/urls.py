@@ -22,6 +22,9 @@ urlpatterns = [
     url(r'^event/index/$',  # 'event/index/'
         event_index,
         name='event_index'),
+    url(r'^event/(?P<event_id>\d+)/$',  # 'event/16/'
+        event_detail,
+        name="event_detail"),
     url(r'^talk/index/$',  # 'talk/index/'
         talk_index,
         name='talk_index'),

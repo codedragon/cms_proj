@@ -1,8 +1,7 @@
 import datetime
 from django.contrib import admin
 from django.core.urlresolvers import reverse  # Added for reverse error
-from cmsblog.models import Post
-from cmsblog.models import Category
+from cmsblog.models import *
 import logging
 
 
@@ -71,5 +70,10 @@ class CategoryAdmin(admin.ModelAdmin):
     exclude = ('posts', )
 
 
+class EventAdmin(admin.ModelAdmin):
+    fields = ('title', 'event_time')
+
+
+admin.site.register(Event, EventAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)

@@ -146,6 +146,22 @@ def event_index(request):
     return render(request, 'event_index.html', context)
 
 
+def event_detail(request, post_id):
+    """Display a single event
+    by getting all posts then filtering by pk"""
+    logger.info('----- executing event_detail -----')
+    events = Event.objects.all()
+    try:
+        event = events.get(pk=post_id)
+    except Post.DoesNotExist:
+        raise Http404
+    context = {'event': event}
+    logger.info('request: %s', request)
+    logger.info('event: %s', event)  # returns name of event
+    logger.info('type event: %s', type(event))
+    return render(request, 'event_detail.html', context)
+
+
 def talk_index(request):
     """Display all posts"""
     logger.info('----- executing post_index -----')

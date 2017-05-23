@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+<a class="backlink" href="/">Home</a>
+<h1>{{ event }}</h1>
+<div class="post-body">
+    {{ event.title }}
+</div>
+<a class="btn btn-default" href="{% url 'event_edit' pk=post.pk %}">Edit</a></a>
+{% endblock %}
