@@ -146,13 +146,13 @@ def event_index(request):
     return render(request, 'event_index.html', context)
 
 
-def event_detail(request, post_id):
+def event_detail(request, event_id):
     """Display a single event
     by getting all posts then filtering by pk"""
     logger.info('----- executing event_detail -----')
     events = Event.objects.all()
     try:
-        event = events.get(pk=post_id)
+        event = events.get(pk=event_id)
     except Post.DoesNotExist:
         raise Http404
     context = {'event': event}
@@ -160,6 +160,33 @@ def event_detail(request, post_id):
     logger.info('event: %s', event)  # returns name of event
     logger.info('type event: %s', type(event))
     return render(request, 'event_detail.html', context)
+
+
+def event_edit(request, pk):
+    """Edit Event
+    GET = form
+    POST = post"""
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == "POST":
+        logger.info('----- executing event_edit POST -----')
+        logger.info('POST: %s', request.POST)
+        form = EventForm(request.POST, instance=event)
+        logger.info('form type: %s', type(form))
+        logger.info('form: %s', form)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            context = {'event': event}
+            logger.info('context: %s', context)
+            return render(request, 'event_detail.html', context)
+        else:
+            logger.info('form is not valid!')
+    else:
+        logger.info('----- executing post_edit NOT POST -----')
+        form = PostForm(instance=post)
+    logger.info('request: %s', request)  # s string required
+    logger.info('form: %s', form)
+    return render(request, 'event_edit.html', {'form': form})
 
 
 def talk_index(request):

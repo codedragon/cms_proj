@@ -92,7 +92,7 @@ class FrontEndTestCase(TestCase):
 
     def test_list_only_published(self):
         """Check to see (List only published)"""
-        resp = self.client.get('/')
+        resp = self.client.get('/')  # todo This will fail with home refactor
         # the content of the rendered response is always a bytestring
         resp_text = resp.content.decode(resp.charset)
         self.assertTrue("Recent Posts" in resp_text)

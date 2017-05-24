@@ -44,6 +44,7 @@ class Category(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=128)
+    # todo start time, end time
     event_time = models.DateTimeField(auto_now_add=False)
 
     def __unicode__(self):
