@@ -17,6 +17,7 @@ class Post(models.Model):
         return self.title
 
     def __str__(self):
+        """What will print"""
         return self.title
 
 

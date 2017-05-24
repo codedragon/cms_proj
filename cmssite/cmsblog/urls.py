@@ -22,12 +22,12 @@ urlpatterns = [
     url(r'^event/index/$',  # 'event/index/'
         event_index,
         name='event_index'),
-    url(r'^event/(?P<pk>\d+)/$',  # 'event/16/'
+    url(r'^event/(?P<event_id>\d+)/$',  # 'event/16/'
         event_detail,
-        name="event_detail"),
+        name='event_detail'),
     url(r'^event/(?P<pk>\d+)/edit/$',  # 'event/16/edit/'
         event_edit,
-        name="event_edit"),
+        name='event_edit'),
     url(r'^talk/index/$',  # 'talk/index/'
         talk_index,
         name='talk_index'),

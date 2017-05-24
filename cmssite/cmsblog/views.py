@@ -153,7 +153,7 @@ def event_detail(request, event_id):
     events = Event.objects.all()
     try:
         event = events.get(pk=event_id)
-    except Post.DoesNotExist:
+    except Event.DoesNotExist:
         raise Http404
     context = {'event': event}
     logger.info('request: %s', request)

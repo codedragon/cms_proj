@@ -2,10 +2,10 @@
 
 {%  block content %}
     <h1>Edit Event</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+    <form method="POST" class="event-form">{% csrf_token %}
         {# form.as_p #}
         <p>{{ form.title }}</p>
-        <p>{{ form.text }}</p>
+        <p>{{ form.event_time }}</p>
         <p>categories go here</p>
         <p>---</p>
         <p>end categories</p>
