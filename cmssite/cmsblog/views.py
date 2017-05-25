@@ -182,8 +182,8 @@ def event_edit(request, pk):
         else:
             logger.info('form is not valid!')
     else:
-        logger.info('----- executing post_edit NOT POST -----')
-        form = PostForm(instance=post)
+        logger.info('----- executing event_edit NOT POST -----')
+        form = EventForm(instance=event)
     logger.info('request: %s', request)  # s string required
     logger.info('form: %s', form)
     return render(request, 'event_edit.html', {'form': form})
