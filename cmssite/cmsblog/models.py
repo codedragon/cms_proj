@@ -88,7 +88,7 @@ class Event(models.Model):
     event_end = models.DateTimeField(auto_now_add=False)
     # todo test end > start and end - start < 4 hours
     talk = models.ManyToManyField(Talk, blank=True)
-    venue = models.ForeignKey(Venue)
+    # venue = models.ForeignKey(Venue)
 
     def __unicode__(self):
         """Returns a nice, human-readable representation of the model from the
