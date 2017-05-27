@@ -116,25 +116,3 @@ class Speaker(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Venue(models.Model):
-    name = models.CharField(max_length=128)
-    address = models.CharField(max_length=128)
-    city = models.CharField(max_length=128)
-    state = models.CharField(max_length=128)
-    zip = models.CharField(max_length=128)
-    contact_name = models.CharField(max_length=128)
-    contact_phone = models.CharField(max_length=128)
-    contact_email = models.CharField(max_length=128)
-
-    def __unicode__(self):
-        """Returns a nice, human-readable representation of the model from the
-        __unicode__() method.
-        """
-        return self.name
-
-    def __str__(self):
-        return self.name
-
-

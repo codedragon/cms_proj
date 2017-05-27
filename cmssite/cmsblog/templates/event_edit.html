@@ -5,7 +5,8 @@
     <form method="POST" class="event-form">{% csrf_token %}
         {# form.as_p #}
         <p>{{ form.title }}</p>
-        <p>{{ form.event_time }}</p>
+        <p>{{ form.event_start }}</p>
+        <p>{{ form.event_end }}</p>
         <p>categories go here</p>
         <p>---</p>
         <p>end categories</p>
