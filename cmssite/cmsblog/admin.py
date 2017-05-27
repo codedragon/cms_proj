@@ -71,7 +71,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class EventAdmin(admin.ModelAdmin):
-    fields = ('title', 'event_time')
+    fields = ('title', 'event_start', 'event_end')
 
 
 admin.site.register(Event, EventAdmin)

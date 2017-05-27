@@ -59,27 +59,6 @@ class Talk(models.Model):
         return self.title
 
 
-class Venue(models.Model):
-    # Referenced by Event so must come above
-    name = models.CharField(max_length=128)
-    address = models.CharField(max_length=128)
-    city = models.CharField(max_length=128)
-    state = models.CharField(max_length=128)
-    zip = models.CharField(max_length=128)
-    contact_name = models.CharField(max_length=128)
-    contact_phone = models.CharField(max_length=128)
-    contact_email = models.CharField(max_length=128)
-
-    def __unicode__(self):
-        """Returns a nice, human-readable representation of the model from the
-        __unicode__() method.
-        """
-        return self.name
-
-    def __str__(self):
-        return self.name
-
-
 class Event(models.Model):
     title = models.CharField(max_length=128)
     # todo start time, end time
@@ -98,6 +77,29 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Venue(models.Model):
+    # References Event so must come after
+    name = models.CharField(max_length=128)
+    address = models.CharField(max_length=128)
+    city = models.CharField(max_length=128)
+    state = models.CharField(max_length=128)
+    zip = models.CharField(max_length=128)
+    contact_name = models.CharField(max_length=128)
+    contact_phone = models.CharField(max_length=128)
+    contact_email = models.CharField(max_length=128)
+    # Venue can have many Events
+    event = models.ForeignKey(Event)
+
+    def __unicode__(self):
+        """Returns a nice, human-readable representation of the model from the
+        __unicode__() method.
+        """
+        return self.name
+
+    def __str__(self):
+        return self.name
 
 
 class Speaker(models.Model):
