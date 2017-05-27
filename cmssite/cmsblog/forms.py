@@ -6,14 +6,14 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text',)
+        fields = ('title', 'text', )
 
 
 class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
-        fields = ('name', 'description',)
+        fields = ('name', 'description', )
 
 
 class EventForm(forms.ModelForm):

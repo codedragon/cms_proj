@@ -1,8 +1,8 @@
 """Experiment and exploration"""
 
 
-from cmsblog.models import Post, Category
-from cmsblog.forms import CategoryForm
+from cmsblog.models import *
+from cmsblog.forms import *
 
 def main():
 

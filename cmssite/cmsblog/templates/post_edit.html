@@ -8,6 +8,11 @@
         <p>{{ form.text }}</p>
         <p>categories go here</p>
         <p>---</p>
+        {% comment %} This doesn't actually work {% endcomment %}
+        {% for category in form.categories.all %}
+            <p>{{ category }}</p>
+        {% endfor %}
+
         <p>end categories</p>
         <button type="submit" class="save btn btn-default">Save</button>
     </form>
