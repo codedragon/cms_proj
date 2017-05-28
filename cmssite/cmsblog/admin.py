@@ -34,6 +34,10 @@ class CategorizationInline(admin.TabularInline):
     logger.info('model.category: %s', print(model.category))
 
 
+class EventTalkInline(admin.TabularInline):
+    model = Event.talks.through
+
+
 def make_published(modeladmin, request, queryset):
     """Set publication date for selected posts.
     Used by: PostAdmin()
@@ -71,9 +75,17 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class EventAdmin(admin.ModelAdmin):
+    inlines = [
+        EventTalkInline,
+    ]
     fields = ('title', 'event_start', 'event_end')
+
+class TalkAdmin(admin.ModelAdmin):
+    fields : ('title', 'abstract')
+
 
 
 admin.site.register(Event, EventAdmin)
+admin.site.register(Talk, TalkAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Category, CategoryAdmin)

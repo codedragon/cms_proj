@@ -6,5 +6,10 @@
 <div class="post-body">
     {{ event.title }}
 </div>
+<ul class="categories">
+    {% for talk in event.talks.all %}
+    <li>{{ talk }}</li>
+    {% endfor %}
+</ul>
 <a class="btn btn-default" href="{% url 'event_edit' pk=event.pk %}">Edit</a></a>
 {% endblock %}
