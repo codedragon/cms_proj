@@ -155,6 +155,8 @@ def event_detail(request, event_id):
         event = events.get(pk=event_id)
     except Event.DoesNotExist:
         raise Http404
+    venues = Venue.objects.all()
+    event.venue = venues[event.venue_id]
     context = {'event': event}
     logger.info('request: %s', request)
     logger.info('event: %s', event)  # returns name of event

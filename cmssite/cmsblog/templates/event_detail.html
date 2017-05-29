@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a class="backlink" href="/">Home</a>
-<h1>{{ event }}</h1>
-<div class="post-body">
-    {{ event.title }}
-</div>
-<ul class="categories">
-    {% for talk in event.talks.all %}
-    <li>{{ talk }}</li>
-    {% endfor %}
-</ul>
-<a class="btn btn-default" href="{% url 'event_edit' pk=event.pk %}">Edit</a></a>
+    <a class="backlink" href="/">Home</a>
+    <h1>{{ event }}</h1>
+        <div class="post-body">
+            {{ event.title }}
+        </div>
+    <h2>The Talks</h2>
+        {% for talk in event.talks.all %}
+            <h3>{{ talk }}</h3>
+            <p>{{ talk.abstract }}</p>
+        {% endfor %}
+    <h2>The Venue</h2>
+        <p>{{ event.venue }}</p>
+    <a class="btn btn-default" href="{% url 'event_edit' pk=event.pk %}">Edit</a></a>
 {% endblock %}
