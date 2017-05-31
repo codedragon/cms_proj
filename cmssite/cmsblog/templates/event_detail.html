@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <a class="backlink" href="/">Home</a>
     <h1>{{ event }}</h1>
     <h2>The Talks</h2>
         {% for talk in event.talks.all %}

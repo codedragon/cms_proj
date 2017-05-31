@@ -22,14 +22,13 @@ logger.addHandler(fh)
 
 
 def list_view(request):
-    """Display all posts"""
+    """Home page - Calendar"""
     logger.info('----- executing list_view -----')
-    published = Post.objects.exclude(published_date__exact=None)
-    posts = published.order_by('-published_date')
-    context = {'posts': posts}
-    # templates are rendered by passing in a context
+    """Display all posts"""
+    logger.info('----- executing event_index -----')
+    events = Event.objects.all()
+    context = {'events': events}
     return render(request, 'list.html', context)
-    # render() is a shortcut for render_to_response (uses RequestContext)
 
 
 def detail_view(request, post_id):
