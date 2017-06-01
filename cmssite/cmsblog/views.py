@@ -138,7 +138,7 @@ def post_index(request):
 
 
 def event_index(request):
-    """Display all posts"""
+    """Display all events"""
     logger.info('----- executing event_index -----')
     events = Event.objects.all()
     context = {'events': events}
@@ -188,14 +188,11 @@ def event_edit(request, pk):
 
 
 def talk_index(request):
-    """Display all posts"""
-    logger.info('----- executing post_index -----')
-    published = Post.objects.exclude(published_date__exact=None)
-    posts = published.order_by('-published_date')
-    context = {'posts': posts}
-    # templates are rendered by passing in a context
-    return render(request, 'post_index.html', context)
-    # render() is a shortcut for render_to_response (uses RequestContext)
+    """Display all talks"""
+    logger.info('----- executing event_index -----')
+    talks = Talk.objects.all()
+    context = {'talks': talks}
+    return render(request, 'talk_index.html', context)
 
 
 def speaker_index(request):

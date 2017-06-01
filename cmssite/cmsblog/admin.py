@@ -38,10 +38,6 @@ class EventTalkInline(admin.TabularInline):
     model = Event.talks.through
 
 
-# class EventVenueInline(admin.TabularInline):
-#     model = Event.venue.through
-
-
 def make_published(modeladmin, request, queryset):
     """Set publication date for selected posts.
     Used by: PostAdmin()
@@ -84,8 +80,12 @@ class EventAdmin(admin.ModelAdmin):
     ]
     fields = ('title', 'event_start', 'event_end', 'venue')
 
+class SpeakerAdmin(admin.ModelAdmin):
+    fields : ('name', 'phone', 'email', 'bio')
+
+
 class TalkAdmin(admin.ModelAdmin):
-    fields : ('title', 'abstract')
+    fields : ('title', 'abstract', )
 
 
 class VenueAdmin(admin.ModelAdmin):
@@ -93,6 +93,7 @@ class VenueAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Event, EventAdmin)
+admin.site.register(Speaker, SpeakerAdmin)
 admin.site.register(Talk, TalkAdmin)
 admin.site.register(Venue, VenueAdmin)
 admin.site.register(Post, PostAdmin)

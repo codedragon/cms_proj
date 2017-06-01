@@ -43,10 +43,27 @@ class Category(models.Model):
         return self.name
 
 
+class Speaker(models.Model):
+    name = models.CharField(max_length=128)
+    phone = models.CharField(max_length=128)
+    email = models.CharField(max_length=128)
+    bio = models.TextField(blank=True)
+
+    def __unicode__(self):
+        """Returns a nice, human-readable representation of the model from the
+        __unicode__() method.
+        """
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+
 class Talk(models.Model):
     # Referenced by Event so must come above
     title = models.CharField(max_length=128)
     abstract = models.TextField(blank=True)
+    speaker = models.ForeignKey(Speaker)  # 'venue_id'
     # keywords
 
     def __unicode__(self):
@@ -98,19 +115,3 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Speaker(models.Model):
-    name = models.CharField(max_length=128)
-    phone = models.CharField(max_length=128)
-    email = models.CharField(max_length=128)
-    bio = models.TextField(blank=True)
-
-    def __unicode__(self):
-        """Returns a nice, human-readable representation of the model from the
-        __unicode__() method.
-        """
-        return self.name
-
-    def __str__(self):
-        return self.name

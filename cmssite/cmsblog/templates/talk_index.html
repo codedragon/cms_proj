@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+    <h1>Talks</h1>
+    {% for talk in talks %}
+        <hr>
+        <h1>{{ talk }}</h1>
+        <p>{{ talk.abstract }}</p>
+    {% endfor %}
+{% endblock %}
