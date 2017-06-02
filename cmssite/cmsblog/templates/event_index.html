@@ -2,7 +2,7 @@
     <h1>Events</h1>
     {% for event in events %}
         <hr>
-        <h1>{{ event }}</h1>
+        <h1><a href="{% url 'event_detail' event.pk %}">{{ event }}</a></h1>
         <p>{{ event.event_start }} - {{ event.event_end|time }}</p>
         <p>{{ event.venue }}: {{ event.venue.address }}</p>
     {% endfor %}
