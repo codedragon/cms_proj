@@ -27,6 +27,9 @@ def list_view(request):
     """Display all posts"""
     logger.info('----- executing event_index -----')
     events = Event.objects.all()
+    events = events.order_by('-event_start')
+    # todo exclude past events
+    # todo current vs future events
     context = {'events': events}
     return render(request, 'list.html', context)
 
