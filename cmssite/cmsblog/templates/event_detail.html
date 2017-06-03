@@ -8,6 +8,7 @@
         {% for talk in event.talks.all %}
             <h3>{{ talk }}</h3>
             <p>{{ talk.abstract }}</p>
+            <p>{{ talk.speaker }}</p>
         {% endfor %}
     <a class="btn btn-default" href="{% url 'event_edit' pk=event.pk %}">Edit</a></a>
 {% endblock %}
