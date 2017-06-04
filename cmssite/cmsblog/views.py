@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from cmsblog.models import *
 from cmsblog.forms import *
 import logging
+import datetime
 
 
 # create logger with module name
@@ -26,11 +27,15 @@ def list_view(request):
     logger.info('----- executing list_view -----')
     """Display all posts"""
     logger.info('----- executing event_index -----')
-    events = Event.objects.all()
-    events = events.order_by('-event_start')
-    # todo exclude past events
-    # todo current vs future events
-    context = {'events': events}
+    # events = Event.objects.all()
+    # events = events.order_by('event_start')
+    # RuntimeWarning: naive datetime while time zone support is active
+    events = Event.objects.filter(event_start__gte=datetime.datetime.today()).order_by('event_start')
+    current_event = events[0]
+    next_event = events[1]
+    # context = {'events': events}
+    # context is a dictionary
+    context = {'current_event': current_event, 'next_event': next_event}
     return render(request, 'list.html', context)
 
 
