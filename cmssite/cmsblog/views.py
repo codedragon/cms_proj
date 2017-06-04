@@ -203,6 +203,19 @@ def talk_index(request):
     return render(request, 'talk_index.html', context)
 
 
+def talk_detail(request, talk_id):
+    """Display a single event
+    by getting all posts then filtering by pk"""
+    logger.info('----- executing event_detail -----')
+    talks = Talk.objects.all()
+    try:
+        talk = talks.get(pk=talk_id)
+    except Talk.DoesNotExist:
+        raise Http404
+    context = {'talk': talk}
+    return render(request, 'talk_detail.html', context)
+
+
 def speaker_index(request):
     """Display all posts"""
     logger.info('----- executing post_index -----')

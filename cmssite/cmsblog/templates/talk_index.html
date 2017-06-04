@@ -2,7 +2,8 @@
     <h1>Talks</h1>
     {% for talk in talks %}
         <hr>
-        <h1>{{ talk }}</h1>
+        <h1><a href="{% url 'talk_detail' talk.pk %}">{{ talk }}</a></h1>
+        <p>{{ talk.speaker }}</p>
         <p>{{ talk.abstract }}</p>
     {% endfor %}
 {% endblock %}

@@ -31,6 +31,9 @@ urlpatterns = [
     url(r'^talk/index/$',  # 'talk/index/'
         talk_index,
         name='talk_index'),
+    url(r'^talk/(?P<talk_id>\d+)/$',  # 'talk/16/'
+        talk_detail,
+        name='talk_detail'),
     url(r'^speaker/index/$',  # 'speaker/index/'
         speaker_index,
         name='speaker_index'),
