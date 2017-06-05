@@ -216,6 +216,33 @@ def talk_detail(request, talk_id):
     return render(request, 'talk_detail.html', context)
 
 
+def talk_edit(request, pk):
+    """Edit Event
+    GET = form
+    POST = post"""
+    talk = get_object_or_404(Talk, pk=pk)
+    if request.method == "POST":
+        logger.info('----- executing event_edit POST -----')
+        logger.info('POST: %s', request.POST)
+        form = TalkForm(request.POST, instance=talk)
+        logger.info('form type: %s', type(form))
+        logger.info('form: %s', form)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            context = {'talk': talk}
+            logger.info('context: %s', context)
+            return render(request, 'talk_detail.html', context)
+        else:
+            logger.info('form is not valid!')
+    else:
+        logger.info('----- executing event_edit NOT POST -----')
+        form = TalkForm(instance=talk)
+    logger.info('request: %s', request)  # s string required
+    logger.info('form: %s', form)
+    return render(request, 'talk_edit.html', {'form': form})
+
+
 def speaker_index(request):
     """Display all posts"""
     logger.info('----- executing post_index -----')

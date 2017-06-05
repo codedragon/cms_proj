@@ -21,3 +21,10 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('title', 'event_start', 'event_end', 'talks',)  # 'venue')
+
+
+class TalkForm(forms.ModelForm):
+
+    class Meta:
+        model = Talk
+        fields = ('title', 'abstract', )
