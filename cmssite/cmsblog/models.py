@@ -50,9 +50,6 @@ class Speaker(models.Model):
     bio = models.TextField(blank=True)
 
     def __unicode__(self):
-        """Returns a nice, human-readable representation of the model from the
-        __unicode__() method.
-        """
         return self.name
 
     def __str__(self):
@@ -67,9 +64,6 @@ class Talk(models.Model):
     # keywords
 
     def __unicode__(self):
-        """Returns a nice, human-readable representation of the model from the
-        __unicode__() method.
-        """
         return self.title
 
     def __str__(self):
@@ -88,9 +82,6 @@ class Venue(models.Model):
     contact_email = models.CharField(max_length=128, blank=True)
 
     def __unicode__(self):
-        """Returns a nice, human-readable representation of the model from the
-        __unicode__() method.
-        """
         return self.name
 
     def __str__(self):
@@ -99,8 +90,6 @@ class Venue(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=128)
-    # todo start time, end time
-    # event_time = models.DateTimeField(auto_now_add=False)
     event_start = models.DateTimeField(auto_now_add=False)
     event_end = models.DateTimeField(auto_now_add=False)
     # todo test end > start and end - start < 4 hours
@@ -108,9 +97,6 @@ class Event(models.Model):
     venue = models.ForeignKey(Venue)  # 'venue_id'
 
     def __unicode__(self):
-        """Returns a nice, human-readable representation of the model from the
-        __unicode__() method.
-        """
         return self.title
 
     def __str__(self):

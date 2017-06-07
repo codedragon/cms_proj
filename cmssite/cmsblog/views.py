@@ -25,16 +25,10 @@ logger.addHandler(fh)
 def list_view(request):
     """Home page - Calendar"""
     logger.info('----- executing list_view -----')
-    """Display all posts"""
-    logger.info('----- executing event_index -----')
-    # events = Event.objects.all()
-    # events = events.order_by('event_start')
     # RuntimeWarning: naive datetime while time zone support is active
     events = Event.objects.filter(event_start__gte=datetime.datetime.today()).order_by('event_start')
     current_event = events[0]
     next_event = events[1]
-    # context = {'events': events}
-    # context is a dictionary
     context = {'current_event': current_event, 'next_event': next_event}
     return render(request, 'list.html', context)
 
@@ -84,38 +78,16 @@ def post_edit(request, pk):
     """Edit Post
     GET = form
     POST = post"""
-    # request: <WSGIRequest: POST '/post/14/edit/'>
-    # pk (Primary Key):
     post = get_object_or_404(Post, pk=pk)
-    # type(post) = <class 'cmsblog.models.Post'>
-    # cats = post.categories.all()
-    # cat = cats[1].clean()
-    # type(cats) = <class 'django.db.models.query.QuerySet'>
-    # type(cats[0]) = <class 'cmsblog.models.Category'>
-    # cats[0].name is correct
     logger.info('request: %s', request)
     logger.info('pk: %s', pk)
     logger.info('type post: %s', type(post))
-    # logger.info('type cats: %s', type(cats))
-    # logger.info('type cats[0]: %s', type(cats[0]))
-    # logger.info('cats[0].name: %s', cats[0].name)
     if request.method == "POST":
         logger.info('----- executing post_edit POST -----')
         logger.info('POST: %s', request.POST)  # POST does not contain cat data
         form = PostForm(request.POST, instance=post)
-        # form type: <class 'cmsblog.forms.PostForm'>
-        # ...name="title" value="Time" maxlength="128" required id="id_title"..
-        # catform = CategoryForm(cat)
-        # if catform.is_valid():
-        #     logger.info('! catform is valid!')
-        # else:
-        #     logger.info('...catform is NOT valid...')
-        # catform type: <class 'cmsblog.forms.CategoryForm'>
-        # ...class="errorlist"><li>This field is required.</li>
         logger.info('form type: %s', type(form))
         logger.info('form: %s', form)
-        # logger.info('catform type: %s', type(catform))
-        # logger.info('catform: %s', print(catform))  # BAD DATA!!!
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -140,9 +112,7 @@ def post_index(request):
     published = Post.objects.exclude(published_date__exact=None)
     posts = published.order_by('-published_date')
     context = {'posts': posts}
-    # templates are rendered by passing in a context
     return render(request, 'post_index.html', context)
-    # render() is a shortcut for render_to_response (uses RequestContext)
 
 
 def event_index(request):
@@ -162,8 +132,6 @@ def event_detail(request, event_id):
         event = events.get(pk=event_id)
     except Event.DoesNotExist:
         raise Http404
-    venues = Venue.objects.all()
-    event.venue = venues[0]  # [event.venue_id]
     context = {'event': event}
     return render(request, 'event_detail.html', context)
 
@@ -204,8 +172,7 @@ def talk_index(request):
 
 
 def talk_detail(request, talk_id):
-    """Display a single event
-    by getting all posts then filtering by pk"""
+    """Display a single talk"""
     logger.info('----- executing event_detail -----')
     talks = Talk.objects.all()
     try:
@@ -217,9 +184,7 @@ def talk_detail(request, talk_id):
 
 
 def talk_edit(request, pk):
-    """Edit Event
-    GET = form
-    POST = post"""
+    """Edit Talk"""
     talk = get_object_or_404(Talk, pk=pk)
     if request.method == "POST":
         logger.info('----- executing event_edit POST -----')
