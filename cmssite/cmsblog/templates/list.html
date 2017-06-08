@@ -9,7 +9,7 @@
     <p>{{ current_event.venue }}: {{ current_event.venue.address }}</p>
     <h2>The Talks</h2>
         {% for talk in current_event.talks.all %}
-            <h3>{{ talk }}</h3>
+            <h3><a href="{%  url 'talk_detail' talk.pk %}">{{ talk }}</a></h3>
             <p>{{ talk.speaker }}</p>
         {% endfor %}
     <hr>
