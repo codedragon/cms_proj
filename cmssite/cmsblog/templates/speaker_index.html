@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+    <h1>Speakers</h1>
+    {% for speaker in speakers %}
+        <hr>
+        <h1><a href="{% url 'speaker_detail' speaker.pk %}">{{ speaker }}</a></h1>
+        <p>{{ speaker.bio }}</p>
+    {% endfor %}
+{% endblock %}

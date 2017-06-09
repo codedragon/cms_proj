@@ -48,3 +48,7 @@ Useful attributes on {{ field }} include:
 
 {{ field.field }}
     The Field instance from the form class that this BoundField wraps. You can use it to access Field attributes, e.g. {{ char_field.field.max_length }}. 
+    
+## The Little Things (TLT): Django - Creating a Drop-Down List with Django
+
+http://gregblogs.com/the-little-things-tlt-django-creating-a-drop-down-list-with-django/

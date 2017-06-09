@@ -165,7 +165,7 @@ def event_edit(request, pk):
 
 def talk_index(request):
     """Display all talks"""
-    logger.info('----- executing event_index -----')
+    logger.info('----- executing talk_index -----')
     talks = Talk.objects.all()
     context = {'talks': talks}
     return render(request, 'talk_index.html', context)
@@ -173,7 +173,7 @@ def talk_index(request):
 
 def talk_detail(request, talk_id):
     """Display a single talk"""
-    logger.info('----- executing event_detail -----')
+    logger.info('----- executing talk_detail -----')
     talks = Talk.objects.all()
     try:
         talk = talks.get(pk=talk_id)
@@ -187,7 +187,7 @@ def talk_edit(request, pk):
     """Edit Talk"""
     talk = get_object_or_404(Talk, pk=pk)
     if request.method == "POST":
-        logger.info('----- executing event_edit POST -----')
+        logger.info('----- executing talk_edit POST -----')
         logger.info('POST: %s', request.POST)
         form = TalkForm(request.POST, instance=talk)
         logger.info('form type: %s', type(form))
@@ -209,14 +209,48 @@ def talk_edit(request, pk):
 
 
 def speaker_index(request):
-    """Display all posts"""
-    logger.info('----- executing post_index -----')
-    published = Post.objects.exclude(published_date__exact=None)
-    posts = published.order_by('-published_date')
-    context = {'posts': posts}
-    # templates are rendered by passing in a context
-    return render(request, 'post_index.html', context)
-    # render() is a shortcut for render_to_response (uses RequestContext)
+    """Display all Speakers"""
+    logger.info('----- executing speaker_index -----')
+    speakers = Speaker.objects.all()
+    context = {'speakers': speakers}
+    return render(request, 'speaker_index.html', context)
+
+
+def speaker_detail(request, speaker_id):
+    """Display a single speaker"""
+    logger.info('----- executing speaker_detail -----')
+    speakers = Speaker.objects.all()
+    try:
+        speaker = speakers.get(pk=speaker_id)
+    except Talk.DoesNotExist:
+        raise Http404
+    context = {'speaker': speaker}
+    return render(request, 'speaker_detail.html', context)
+
+
+def speaker_edit(request, pk):
+    """Edit Speaker"""
+    speaker = get_object_or_404(Speaker, pk=pk)
+    if request.method == "POST":
+        logger.info('----- executing speaker_edit POST -----')
+        logger.info('POST: %s', request.POST)
+        form = SpeakerForm(request.POST, instance=speaker)
+        logger.info('form type: %s', type(form))
+        logger.info('form: %s', form)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            context = {'speaker': speaker}
+            logger.info('context: %s', context)
+            return render(request, 'speaker_detail.html', context)
+        else:
+            logger.info('form is not valid!')
+    else:
+        logger.info('----- executing speaker_edit NOT POST -----')
+        form = SpeakerForm(instance=speaker)
+    logger.info('request: %s', request)  # s string required
+    logger.info('form: %s', form)
+    return render(request, 'speaker_edit.html', {'form': form})
 
 
 def venue_index(request):

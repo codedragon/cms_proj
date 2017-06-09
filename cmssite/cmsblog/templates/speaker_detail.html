@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ speaker }}</h1>
+    <p>{{ speaker.name }}</p>
+    <p>{{ speaker.bio }}</p>
+    <a class="btn btn-default" href="{% url 'speaker_edit' pk=speaker.pk %}">Edit</a></a>
+{% endblock %}

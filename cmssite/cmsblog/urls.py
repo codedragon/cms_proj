@@ -28,6 +28,15 @@ urlpatterns = [
     url(r'^event/(?P<pk>\d+)/edit/$',  # 'event/16/edit/'
         event_edit,
         name='event_edit'),
+    url(r'^speaker/index/$',  # 'speaker/index/'
+        speaker_index,
+        name='speaker_index'),
+    url(r'^speaker/(?P<speaker_id>\d+)/$',  # 'speaker/16/'
+        speaker_detail,
+        name='speaker_detail'),
+    url(r'^speaker/(?P<pk>\d+)/edit/$',  # 'speaker/16/edit/'
+        speaker_edit,
+        name='speaker_edit'),
     url(r'^talk/index/$',  # 'talk/index/'
         talk_index,
         name='talk_index'),
@@ -37,9 +46,6 @@ urlpatterns = [
     url(r'^talk/(?P<pk>\d+)/edit/$',  # 'talk/16/edit/'
         talk_edit,
         name='talk_edit'),
-    url(r'^speaker/index/$',  # 'speaker/index/'
-        speaker_index,
-        name='speaker_index'),
     url(r'^venue/index/$',  # 'venue/index/'
         venue_index,
         name='venue_index'),
