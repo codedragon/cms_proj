@@ -4,5 +4,10 @@
     <h1>{{ speaker }}</h1>
     <p>{{ speaker.name }}</p>
     <p>{{ speaker.bio }}</p>
+    <h2>Talks</h2>
+    {% for talk in talks %}
+        <h3><a href="{%  url 'talk_detail' talk.pk %}">{{ talk }}</a></h3>
+        <p>{{ talk.abstract }}</p>
+    {% endfor %}
     <a class="btn btn-default" href="{% url 'speaker_edit' pk=speaker.pk %}">Edit</a></a>
 {% endblock %}

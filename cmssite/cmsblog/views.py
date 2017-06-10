@@ -217,14 +217,16 @@ def speaker_index(request):
 
 
 def speaker_detail(request, speaker_id):
-    """Display a single speaker"""
+    """Display a single speaker and all of their talks"""
     logger.info('----- executing speaker_detail -----')
     speakers = Speaker.objects.all()
     try:
         speaker = speakers.get(pk=speaker_id)
     except Talk.DoesNotExist:
         raise Http404
-    context = {'speaker': speaker}
+    logger.info('speaker: %s', speaker)
+    talks = Talk.objects.filter(speaker__name__icontains=speaker)
+    context = {'speaker': speaker, 'talks': talks}
     return render(request, 'speaker_detail.html', context)
 
 

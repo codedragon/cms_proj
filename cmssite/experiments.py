@@ -53,6 +53,14 @@ events = Event.objects.filter(event_start__gte=datetime.datetime.today()).order_
 current_event = events[0]
 next_event = events[1]
 
+talks = Talk.objects.all()
+for talk in talks:
+    print(talk.speaker)
+
+spkr = Talk.objects.filter(speaker__name__icontains="Kris Black")
+
+Store.objects.all().order_by('item_name'
+  ).filter(category__category__icontains=form['category'].value(), item_name__icontains=form['item_name'].value())
 
 if __name__ == "__main__":
 

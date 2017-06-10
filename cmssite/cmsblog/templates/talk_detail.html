@@ -3,6 +3,6 @@
 {% block content %}
     <h1>{{ talk }}</h1>
     <p>{{ talk.abstract }}</p>
-    <p>{{ talk.speaker }}</p>
+    <p><a href="{%  url 'speaker_detail' talk.speaker.pk %}">{{ talk.speaker }}</a></p>
     <a class="btn btn-default" href="{% url 'talk_edit' pk=talk.pk %}">Edit</a></a>
 {% endblock %}
