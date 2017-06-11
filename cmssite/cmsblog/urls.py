@@ -49,4 +49,10 @@ urlpatterns = [
     url(r'^venue/index/$',  # 'venue/index/'
         venue_index,
         name='venue_index'),
+    url(r'^venue/(?P<venue_id>\d+)/$',  # 'venue/16/'
+        venue_detail,
+        name='venue_detail'),
+    url(r'^venue/(?P<pk>\d+)/edit/$',  # 'venue/16/edit/'
+        venue_edit,
+        name='venue_edit'),
 ]

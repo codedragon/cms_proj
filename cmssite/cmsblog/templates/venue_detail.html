@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ venue }}</h1>
+    <p>{{ venue.address }}</p>
+    <a class="btn btn-default" href="{% url 'venue_edit' pk=venue.pk %}">Edit</a></a>
+{% endblock %}

@@ -34,3 +34,9 @@ class TalkForm(forms.ModelForm):
     class Meta:
         model = Talk
         fields = ('title', 'abstract', )
+
+class VenueForm(forms.ModelForm):
+
+    class Meta:
+        model = Venue
+        fields = ('name', 'address', 'city', 'state', 'zip')

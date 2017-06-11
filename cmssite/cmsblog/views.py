@@ -256,11 +256,46 @@ def speaker_edit(request, pk):
 
 
 def venue_index(request):
-    """Display all posts"""
-    logger.info('----- executing post_index -----')
-    published = Post.objects.exclude(published_date__exact=None)
-    posts = published.order_by('-published_date')
-    context = {'posts': posts}
-    # templates are rendered by passing in a context
-    return render(request, 'post_index.html', context)
-    # render() is a shortcut for render_to_response (uses RequestContext)
+    """Display all venues"""
+    logger.info('----- executing venue_index -----')
+    venues = Venue.objects.all()
+    context = {'venues': venues}
+    return render(request, 'venue_index.html', context)
+
+
+def venue_detail(request, venue_id):
+    """Display a single venue and all of their talks"""
+    logger.info('----- executing venue_detail -----')
+    venues = Venue.objects.all()
+    try:
+        venue = venues.get(pk=venue_id)
+    except Venue.DoesNotExist:
+        raise Http404
+    logger.info('venue: %s', venue)
+    context = {'venue': venue}
+    return render(request, 'venue_detail.html', context)
+
+
+def venue_edit(request, pk):
+    """Edit Venue"""
+    venue = get_object_or_404(Venue, pk=pk)
+    if request.method == "POST":
+        logger.info('----- executing venue_edit POST -----')
+        logger.info('POST: %s', request.POST)
+        form = VenueForm(request.POST, instance=venue)
+        logger.info('form type: %s', type(form))
+        logger.info('form: %s', form)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            context = {'venue': venue}
+            logger.info('context: %s', context)
+            return render(request, 'venue_detail.html', context)
+        else:
+            logger.info('form is not valid!')
+    else:
+        logger.info('----- executing speaker_edit NOT POST -----')
+        form = VenueForm(instance=venue)
+    logger.info('request: %s', request)  # s string required
+    logger.info('form: %s', form)
+    return render(request, 'venue_edit.html', {'form': form})
